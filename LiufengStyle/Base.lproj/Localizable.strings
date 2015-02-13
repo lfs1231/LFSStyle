@@ -1,0 +1,18 @@
+    /* 
+  Localizable.strings
+  LiufengStyle
+
+  Created by lfs on 14-12-6.
+  Copyright (c) 2014年 lfs. All rights reserved.
+*/
+"Release to refresh..."= "释放更新...";
+"Pull down to refresh..."="下拉更新...";
+"Loading..." = "加载中";
+"Updated %ld minute ago" = "上次更新时间：%ld 分钟以前" ;
+"Updated %ld minutes ago" = "上次更新时间：%ld 分钟以前" ;
+"Updated %ld hour ago" = "上次更新时间：%ld 小时以前" ;
+"Updated %ld hours ago" = "上次更新时间：%ld 小时以前" ;
+"Updated %ld day ago" = "上次更新时间：%ld 天以前" ;
+"Updated %ld days ago" = "上次更新时间：%ld 天以前" ;
+"Release to load more..."= "释放加载更多...";
+"Pull up to load more..."= "上拉加载更多...";

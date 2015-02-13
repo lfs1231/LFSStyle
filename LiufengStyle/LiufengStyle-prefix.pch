@@ -1,0 +1,109 @@
+//
+//  LiufengStyle-prefix.pch
+//  LiufengStyle
+//
+//  Created by lfs on 14-12-2.
+//  Copyright (c) 2014年 lfs. All rights reserved.
+//
+
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import "QHViewTag.h"
+#import "QHSliderViewController.h"
+#import "QHCommonUtil.h"
+
+#import "MLTransitionAnimation.h"
+#import "UIViewController+MLTransition.h"
+
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+
+#import <CoreGraphics/CoreGraphics.h>
+
+
+#import "UIViewController+MLTransition.h"
+
+#import "QHViewTag.h"
+#import "QHBasicViewController.h"
+#import "UIView+KGViewExtend.h"
+
+//添加的预编译
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
+#import "ASIHTTPRequestDelegate.h"
+#import "ASIHTTPRequestConfig.h"
+#import "TBXML.h"
+#import "TBXML+HTTP.h"
+#import "TBXML+Compression.h"
+
+#import "MBProgressHUD.h"
+
+    
+// 定义关键字
+//宏定义 NOCELL
+#define NoCellIdentifier @"NoCellIdentifier"
+
+//宏定义 公告
+#define NoticeCellIdentifier @"NoticeCellIdentifier"
+
+//宏定义 新闻
+#define NewsCellIdentifier @"NewsCellIdentifier"
+
+#define PAGE_ROW_NUMBER @"20"
+
+#define WS_BASIC_URL @"http://localhost:9999/MobileDataSupport"
+#define FILE_SHOW_URL @"http://localhost:9999/MobileAppManagement/servlet/ShowImageServlet";
+#define FILE_UPLOAD_URL @"http://localhost:9999/MobileAppManagement/servlet/UploadFileServlet";
+
+//消息通知固定字符串
+#define Notification_Detail @"Notification_Detail"
+#define Notification_List @"Notification_List"
+
+#define News_Detail @"News_Detail"
+#define News_List @"News_List"
+
+#define RevXMPPMsgNotification  @"Receive_XMPP_Message"
+
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
+#define loadNext20Tip @"下面 20 项 . . ."
+#define loadingTip @"正在加载 . . ."
+#define networkError @"网络无连接"
+#define noNetworkTip @"网络无连接"
+
+#define debugMethod() NSLog(@"%s", __func__)
+
+//验证正则表达式
+#define REGEX_USER_NAME_LIMIT @"^.{3,10}$"
+#define REGEX_USER_NAME @"[A-Za-z0-9]{3,10}"
+#define REGEX_EMAIL @"[A-Z0-9a-z._%+-]{3,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+#define REGEX_PASSWORD_LIMIT @"^.{6,20}$"
+#define REGEX_PASSWORD @"[A-Za-z0-9]{6,20}"
+#define REGEX_PHONE_DEFAULT @"[0-9]{3}\\-[0-9]{3}\\-[0-9]{4}"
+
+
+#define AppVersion @"1.0.0"
+
+#ifdef DEBUG
+#define debugLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define debugLog(...)
+#define debugMethod()
+#endif
+
+#endif
+

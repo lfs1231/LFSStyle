@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewsCellIdentifier" rowHeight="99" id="KGk-i7-Jjw" customClass="NewsViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="340" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalCompressionResistancePriority="751" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布日期" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axC-eN-qRg">
+                        <rect key="frame" x="99" y="80" width="124" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="124" id="17R-uA-kTt"/>
+                            <constraint firstAttribute="height" constant="21" id="6my-4v-aDb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultList.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="NzF-ci-vWq">
+                        <rect key="frame" x="10" y="3" width="70" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="fmp-Zb-ewQ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击次数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yy3-H1-abx">
+                        <rect key="frame" x="267" y="82" width="40" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新闻标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJy-sU-yS0">
+                        <rect key="frame" x="99" y="8" width="200" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="QZZ-iA-zkP"/>
+                            <constraint firstAttribute="height" constant="14" id="yjK-Zd-YMC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新闻简介" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Izk-LU-zbQ">
+                        <rect key="frame" x="99" y="30" width="217" height="44"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="rJy-sU-yS0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="1ff-AN-eNo"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="axC-eN-qRg" secondAttribute="bottom" constant="-10.5" id="8Rf-rE-6AZ"/>
+                    <constraint firstItem="axC-eN-qRg" firstAttribute="top" secondItem="Izk-LU-zbQ" secondAttribute="bottom" constant="6" id="Bkx-KY-xSr"/>
+                    <constraint firstItem="rJy-sU-yS0" firstAttribute="leading" secondItem="NzF-ci-vWq" secondAttribute="trailing" constant="19" id="Dvw-rM-3mg"/>
+                    <constraint firstItem="NzF-ci-vWq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-5" id="EoH-Q0-PcJ"/>
+                    <constraint firstAttribute="trailing" secondItem="Izk-LU-zbQ" secondAttribute="trailing" constant="24" id="FPw-YU-qGS"/>
+                    <constraint firstItem="rJy-sU-yS0" firstAttribute="leading" secondItem="axC-eN-qRg" secondAttribute="leading" id="Lts-0R-c0W"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="NzF-ci-vWq" secondAttribute="bottom" constant="7.5" id="Mdl-po-dYn"/>
+                    <constraint firstItem="NzF-ci-vWq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="TKk-Tr-8r0"/>
+                    <constraint firstItem="Yy3-H1-abx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="74" id="c4S-I4-Bsu"/>
+                    <constraint firstAttribute="trailing" secondItem="Yy3-H1-abx" secondAttribute="trailing" constant="33" id="qpd-OI-agD"/>
+                    <constraint firstItem="Izk-LU-zbQ" firstAttribute="top" secondItem="rJy-sU-yS0" secondAttribute="bottom" constant="8" symbolic="YES" id="s9C-OQ-bWw"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Yy3-H1-abx" secondAttribute="bottom" constant="-12.5" id="xFT-k1-fUN"/>
+                    <constraint firstItem="rJy-sU-yS0" firstAttribute="leading" secondItem="Izk-LU-zbQ" secondAttribute="leading" id="xPi-mA-PbL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="homePhotoURL" destination="NzF-ci-vWq" id="XLy-za-hnp"/>
+                <outlet property="newsCTR" destination="Yy3-H1-abx" id="n95-aq-dJN"/>
+                <outlet property="newsTitle" destination="rJy-sU-yS0" id="l6g-wB-JnD"/>
+                <outlet property="publishedTime" destination="axC-eN-qRg" id="OAM-tc-vO2"/>
+                <outlet property="summary" destination="Izk-LU-zbQ" id="97l-n9-pMg"/>
+            </connections>
+            <point key="canvasLocation" x="182" y="122.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="defaultList.jpg" width="100" height="100"/>
+    </resources>
+</document>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsListView">
+            <connections>
+                <outlet property="pullTableView" destination="v1y-Pp-LE5" id="b9u-lN-4Bo"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="v1y-Pp-LE5" customClass="PullTableView">
+                    <rect key="frame" x="0.0" y="0.0" width="590" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="1sU-Ju-hu0"/>
+                        <outlet property="delegate" destination="-1" id="zWX-gw-bhe"/>
+                        <outlet property="pullDelegate" destination="-1" id="n5K-GC-Rhq"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="v1y-Pp-LE5" secondAttribute="bottom" id="2Dm-aq-jNJ"/>
+                <constraint firstAttribute="trailing" secondItem="v1y-Pp-LE5" secondAttribute="trailing" constant="10" id="639-Zd-xAL"/>
+                <constraint firstItem="v1y-Pp-LE5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="897-ON-ief"/>
+                <constraint firstItem="v1y-Pp-LE5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zpn-2U-Z6C"/>
+            </constraints>
+            <point key="canvasLocation" x="155" y="-132"/>
+        </view>
+    </objects>
+</document>

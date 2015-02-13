@@ -1,0 +1,8 @@
+/* 
+  infoPlist.strings
+  LiufengStyle
+
+  Created by lfs on 14-12-6.
+  Copyright (c) 2014年 lfs. All rights reserved.
+*/
+CFBundleDisplayName = "测试";
