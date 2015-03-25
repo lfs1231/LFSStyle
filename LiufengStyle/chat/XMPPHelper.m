@@ -23,6 +23,7 @@
 #import "UserDefaultsHelper.h"
 #import "QQViewController.h"
 #import "Message.h"
+#import "XMPPMessage.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -61,9 +62,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 -(void)initWithUser:(NSString *)newusername andPasswd:(NSString *)newpassword andDomain:(NSString *)newdomain;
 {
     username= [NSString stringWithFormat:@"%@@%@",newusername,newdomain];
-  
+    
     password=newpassword;
-
+    
 }
 
 - (void)dealloc
@@ -205,8 +206,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     //
     // If you don't specify a hostPort, then the default (5222) will be used.
     
-    	[xmppStream setHostName:@"lfsdeMacBook-Pro-3.local"];
-    	[xmppStream setHostPort:5222];
+    [xmppStream setHostName:@"lfsdeMacBook-Pro-3.local"];
+    [xmppStream setHostPort:5222];
     
     
     // You may need to alter these settings depending on the server you're connecting to
@@ -340,7 +341,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)xmppStream:(XMPPStream *)sender willSecureWithSettings:(NSMutableDictionary *)settings
 {
-     NSLog(@"====2=======");
+    NSLog(@"====2=======");
     DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
     NSString *expectedCertName = [xmppStream.myJID domain];
@@ -394,7 +395,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)xmppStream:(XMPPStream *)sender didReceiveTrust:(SecTrustRef)trust
  completionHandler:(void (^)(BOOL shouldTrustPeer))completionHandler
 {
-  
+    
     DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
     // The delegate method should likely have code similar to this,
@@ -439,7 +440,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
-     NSLog(@"====5=======");
+    NSLog(@"====5=======");
     DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
     [self goOnline];
@@ -472,10 +473,63 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self.xmppStream sendElement:message];
 }
 
+
+/** 发送二进制文件 */
+- (void)sendMessageWithData:(NSData *)data andMessageType:msgType toUser:(NSString *) touser
+{
+  
+  
+ 
+    // 转换成base64的编码
+    NSString *base64str = [data base64EncodedStringWithOptions:0];
+    
+    //发送代码
+    NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
+    [body setStringValue:base64str];
+    NSXMLElement *message = [NSXMLElement elementWithName:@"message"];
+    [message addAttributeWithName:@"type" stringValue:@"chat"];
+    NSString *to = [NSString stringWithFormat:@"%@", touser];
+    [message addAttributeWithName:@"to" stringValue:to];
+    [message addChild:body];
+    
+    /*
+    XMPPMessage *message = [XMPPMessage messageWithType:@"chat" to:[XMPPJID jidWithString:touser]];
+    
+    if(msgType==nil)
+    {
+        msgType=@"SOMessageTypeText";
+        
+    }
+    if ([msgType isEqualToString:@"SOMessageTypeText"]) {
+        [message addBody:@"text"];
+    } else if ([msgType isEqualToString:@"SOMessageTypePhoto"]) {
+         [message addBody:@"photo"];
+    } else if ([msgType isEqualToString:@"SOMessageTypeVideo"]) {
+        [message addBody:@"video"];
+    }else if ([msgType isEqualToString:@"SOMessageTypeAudio"]) {
+        [message addBody:@"audio"];
+    }
+    
+    
+   
+    
+    // 转换成base64的编码
+    NSString *base64str = [data base64EncodedStringWithOptions:0];
+    
+    // 设置节点内容
+    XMPPElement *attachment = [XMPPElement elementWithName:@"attachment" stringValue:base64str];
+    
+    // 包含子节点
+    [message addChild:attachment];
+    */
+    // 发送消息
+   [self.xmppStream sendElement:message];
+}
+
 //接收消息
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
-     NSLog(@"====6=======");
+    
     DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
     // A simple example of inbound message handling.
@@ -487,14 +541,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                                        managedObjectContext:[self managedObjectContext_roster]];
         
         XMPPUserCoreDataStorageObject *toUser = [xmppRosterStorage userForJID:[message to]
-                                                                 xmppStream:xmppStream
-                                                       managedObjectContext:[self managedObjectContext_roster]];
-        
+                                                                   xmppStream:xmppStream
+                                                         managedObjectContext:[self managedObjectContext_roster]];
+        NSLog(@"===message: %@",message);
         NSString *body = [[message elementForName:@"body"] stringValue];
+        
         NSString *displayName = [user displayName];
         
         Message *somMessage=[[Message alloc]init];
-    
+        
         somMessage.text = body;
         somMessage.fromMe = NO;
         
@@ -504,18 +559,16 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         
         if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive)
         {
-           
-            //异步更新消息
-            //获取数据，异步通知界面更新
-            [[NSNotificationCenter defaultCenter] postNotificationName:RevXMPPMsgNotification object:somMessage];
-
             
-          /*  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:displayName
-                                                                message:body
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"Ok"
-                                                      otherButtonTitles:nil];
-            [alertView show];*/
+            NSLog(@"====REV MSG: %@",somMessage);
+            //异步更新消息
+            
+            /*  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:displayName
+             message:body
+             delegate:nil
+             cancelButtonTitle:@"Ok"
+             otherButtonTitles:nil];
+             [alertView show];*/
         }
         else
         {
@@ -526,6 +579,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             
             [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
         }
+        //获取数据，异步通知界面更新
+        [[NSNotificationCenter defaultCenter] postNotificationName:RevXMPPMsgNotification object:somMessage];
+        
+        
     }
 }
 
@@ -556,7 +613,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)xmppRoster:(XMPPRoster *)sender didReceiveBuddyRequest:(XMPPPresence *)presence
 {
     
-     NSLog(@"====7=======");
+    NSLog(@"====7=======");
     DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
     XMPPUserCoreDataStorageObject *user = [xmppRosterStorage userForJID:[presence from]
@@ -614,7 +671,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             
             [ [[QHSliderViewController sharedSliderController] navigationController] pushViewController:loginView animated:YES];
         });
-
+        
     }else {
         username=[userDictionary valueForKey:@"userName"];
         password=[userDictionary valueForKey:@"password"];
@@ -623,27 +680,27 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         
         [self initWithUser:username andPasswd:password andDomain:xmppDomain];
         //建立XMPP 连接
-      if([self connect])
+        if([self connect])
         {
             NSLog(@" XMPP connection has been built successfully !");
             self.isXmppConnected=YES;
             isLogin=false;
-          
+            
         }else {
-             NSLog(@" XMPP connection hasn't been built  !");
+            NSLog(@" XMPP connection hasn't been built  !");
         }
     }
-   /* if(isLogin)
-    {
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.0 * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            
-            QQViewController* loginView=[[QQViewController alloc] initWithNibName:@"QQViewController" bundle:nil];
-            
-            [ [[QHSliderViewController sharedSliderController] navigationController] pushViewController:loginView animated:YES];
-        });
-    }
-    */
+    /* if(isLogin)
+     {
+     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.0 * NSEC_PER_SEC);
+     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+     
+     QQViewController* loginView=[[QQViewController alloc] initWithNibName:@"QQViewController" bundle:nil];
+     
+     [ [[QHSliderViewController sharedSliderController] navigationController] pushViewController:loginView animated:YES];
+     });
+     }
+     */
     
     
 }
@@ -657,7 +714,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         singleton = [[XMPPHelper alloc]init];
         singleton.xmppDomain=@"lfsdeMacBook-Pro-3.local";
     });
-  
+    
     [singleton checkUserInfo];
     
     return singleton;
@@ -672,7 +729,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         [DDLog addLogger:[DDTTYLogger sharedInstance] withLogLevel:XMPP_LOG_FLAG_SEND_RECV];
         // Setup the XMPP stream
         [self setupStream];
-
+        
     }
     return self;
 }

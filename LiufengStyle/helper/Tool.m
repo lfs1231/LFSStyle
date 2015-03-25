@@ -165,13 +165,26 @@
 
 +(void) createUserDirectory:(NSString *)createDirectory
 {
-   // NSArray *paths = NSSearchPathForDerictoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [paths lastObject];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *directryPath = [path stringByAppendingPathComponent:createDirectory];
-    [fileManager createDirectoryAtPath:directryPath withIntermediateDirectories:YES attributes:nil error:nil];
-}
+     NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    // 拼接一个文件夹路径
+    NSURL *documentsDirectoryURL = [fileManager URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+    
+    NSString * filePath= [NSString stringWithFormat: @"%@%@", [documentsDirectoryURL absoluteString], createDirectory ];
+    
+    if(![fileManager fileExistsAtPath:filePath])
+    {//如果不存在,则说明是第一次运行这个程序，那么建立这个文件夹
+        // NSArray *paths = NSSearchPathForDerictoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *path = [paths lastObject];
+        
+        NSString *directryPath = [path stringByAppendingPathComponent:createDirectory];
+        [fileManager createDirectoryAtPath:directryPath withIntermediateDirectories:YES attributes:nil error:nil];
+
+    }
+    
+
+ }
 
 //MD5加密字符串
 + (NSString *)getMd5_32Bit_String:(NSString *)srcString
@@ -277,5 +290,23 @@
             subTitle:subTitle
     closeButtonTitle:@"确认" duration:0.0f];
 }
+
++(float) getIOSVersion
+{
+    float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    return version;
+    
+}
+
++(NSString *) getCurrentSystemDateStr
+{
+    //获取系统当前的时间戳
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970]*1000;
+    NSString *timeString = [NSString stringWithFormat:@"%f", a];//转为字符型
+    
+    return timeString;
+}
+
 
 @end

@@ -8,8 +8,13 @@
 
 #import "ZBMessageInputView.h"
 #import "NSString+Message.h"
+#import "Mp3EncodeClient.h"
 
 @interface ZBMessageInputView()<UITextViewDelegate>
+{
+   
+
+}
 /*
 @property (nonatomic, strong, readwrite) ZBMessageTextView *messageInputTextView;
 
@@ -22,6 +27,7 @@
 @property (nonatomic, strong, readwrite) UIButton *holdDownButton;*/
 
 @property (nonatomic, copy) NSString *inputedText;
+
 
 @end
 
@@ -65,7 +71,7 @@
             self.faceSendButton.selected = NO;
             self.multiMediaSendButton.selected = NO;
             sender.selected = !sender.selected;
-            NSLog(@"===sender.selected: %d",sender.selected);
+          
             if (sender.selected){
                 NSLog(@"声音被点击的");
                 [self.messageInputTextView becomeFirstResponder];
@@ -147,6 +153,7 @@
 
 #pragma mark -语音功能
 - (void)holdDownButtonTouchDown {
+ 
     if ([self.delegate respondsToSelector:@selector(didStartRecordingVoiceAction)]) {
         [self.delegate didStartRecordingVoiceAction];
     }
@@ -159,10 +166,12 @@
 }
 
 - (void)holdDownButtonTouchUpInside {
+    
     if ([self.delegate respondsToSelector:@selector(didFinishRecoingVoiceAction)]) {
         [self.delegate didFinishRecoingVoiceAction];
     }
 }
+
 
 #pragma end
 
@@ -353,6 +362,8 @@
         
     }
     [self setupMessageInputViewBarWithStyle:_messageInputViewStyle];
+    
+    
 }
 
 #pragma mark - textViewDelegate

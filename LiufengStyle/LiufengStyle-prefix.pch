@@ -25,8 +25,11 @@
 #import "QHSliderViewController.h"
 #import "QHCommonUtil.h"
 
-#import "MLTransitionAnimation.h"
-#import "UIViewController+MLTransition.h"
+#import "MLBlackTransition.h"
+
+//#import "MLTransitionAnimation.h"
+//#import "UIViewController+MLTransition.h"
+//#import "UIViewController+MLTransition.h"
 
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -34,7 +37,6 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 
-#import "UIViewController+MLTransition.h"
 
 #import "QHViewTag.h"
 #import "QHBasicViewController.h"
@@ -76,6 +78,7 @@
 #define News_List @"News_List"
 
 #define RevXMPPMsgNotification  @"Receive_XMPP_Message"
+#define SendAudioMsgNotification @"Send_Audio_XMPP_Message"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 

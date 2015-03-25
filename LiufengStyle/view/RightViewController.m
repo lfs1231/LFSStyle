@@ -8,6 +8,7 @@
 
 #import "RightViewController.h"
 #import "QQViewController.h"
+#import "viewController.h"
 
 @implementation RightViewController
 
@@ -127,6 +128,8 @@
 - (void)loginAction:(id)sender
 {
     QQViewController* loginView=[[QQViewController alloc] initWithNibName:@"QQViewController" bundle:nil];
+    
+//    ViewController *viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     
    [ [[QHSliderViewController sharedSliderController] navigationController] pushViewController:loginView animated:YES];
     

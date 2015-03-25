@@ -11,7 +11,7 @@
 #import "XMPPMessage.h"
 #import "XMPPUserCoreDataStorageObject.h"
 
-@interface Message : NSObject <SOMessage>
+@interface Message : XMPPMessage <SOMessage>
 
 @property (nonatomic, strong) NSString *fromXmppUser;
 @property (nonatomic, strong) NSString *toXmppUser;

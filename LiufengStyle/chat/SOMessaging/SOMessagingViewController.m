@@ -32,13 +32,14 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "XMPPHelper.h"
 
+
 #define kMessageMaxWidth 240.0f
 
 @interface SOMessagingViewController () <UITableViewDelegate, SOMessageCellDelegate>
 {
     double animationDuration;
     CGRect keyboardRect;
-    
+      
 }
 
 @property (strong, nonatomic) UIImage *balloonSendImage;
@@ -78,7 +79,7 @@
     //设置成NO表示当前控件响应后会传播到其他控件上，默认为YES。
     tapGestureRecognizer.cancelsTouchesInView = NO;
     //将触摸事件添加到当前view
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+   // [self.view addGestureRecognizer:tapGestureRecognizer];
     
     /*
      self.inputView = [[SOMessageInputView alloc] init];
@@ -104,6 +105,7 @@
     
     [self shareFaceView];
     [self shareShareMeun];
+   
     
 }
 
@@ -118,11 +120,11 @@
     self.balloonReceiveImage = [self balloonImageForReceiving];
     
     animationDuration = 0.25;
-   }
+}
 
 
 -(void)keyboardHide:(UITapGestureRecognizer*)tap{
-   
+    
     [self.messageToolView recoverInputMessageToNormal];
 }
 
@@ -773,7 +775,11 @@
 #pragma mark - ZBMessageShareMenuView Delegate
 - (void)didSelecteShareMenuItem:(ZBMessageShareMenuItem *)shareMenuItem atIndex:(NSInteger)index
 {
-    
+    NSLog(@"=som====didSelecteShareMenuItem==");
 }
+
 #pragma end
+
+
+
 @end

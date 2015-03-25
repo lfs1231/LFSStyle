@@ -81,6 +81,7 @@
 }
 
 - (void)shareMenuItemButtonClicked:(UIButton *)sender {
+   
     if ([self.delegate respondsToSelector:@selector(didSelecteShareMenuItem:atIndex:)]) {
         NSInteger index = sender.tag;
         if (index < self.shareMenuItems.count) {
@@ -132,7 +133,7 @@
         NSInteger page = index / (kZBMessageShareMenuPerRowItemCount * 2);
         CGRect shareMenuItemViewFrame = CGRectMake((index % kZBMessageShareMenuPerRowItemCount) * (kZBShareMenuItemIconSize + paddingX) + paddingX + (page * CGRectGetWidth(self.bounds)), ((index / kZBMessageShareMenuPerRowItemCount) - kZBMessageShareMenuPerColum * page) * (KZBShareMenuItemHeight + paddingY) + paddingY, kZBShareMenuItemIconSize, KZBShareMenuItemHeight);
         ZBMessageShareMenuItemView *shareMenuItemView = [[ZBMessageShareMenuItemView alloc] initWithFrame:shareMenuItemViewFrame];
-        
+       
         shareMenuItemView.shareMenuItemButton.tag = index;
         [shareMenuItemView.shareMenuItemButton addTarget:self action:@selector(shareMenuItemButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [shareMenuItemView.shareMenuItemButton setImage:shareMenuItem.normalIconImage forState:UIControlStateNormal];

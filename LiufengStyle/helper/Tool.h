@@ -53,4 +53,11 @@
 +(void)showError:(id)invokeView andTitle:(NSString *)title andSubTitle:(NSString *)subTitle;
 
 +(void)showSuccess:(id)invokeView andSuccessTitle:(NSString *)SuccessTitle andSubtitle:(NSString *)kSubtitle andActionBlock:(void (^)())sucessActionBlock;
+
+//得到系统版本
++(float) getIOSVersion;
+
+//得到当前时间戳
++(NSString *) getCurrentSystemDateStr;
+
 @end

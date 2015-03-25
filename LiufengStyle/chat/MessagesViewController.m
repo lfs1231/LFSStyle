@@ -57,6 +57,16 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
 }
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    
+    [super viewWillAppear:animated];
+    
+    [_tableV reloadData];
+    NSLog(@"=======appear=====");
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -196,7 +206,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
 
     if (![MainTabViewController getMain].xmppHelper.isXmppConnected) {
-        NSLog(@"====999");
         [XMPPHelper sharedInstance];
     }
    
@@ -230,15 +239,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         }
         
     }
-    
+    NSLog(@"===1=fetchedResultsController=%@",fetchedResultsController);
     return fetchedResultsController;
 }
 
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    NSLog(@"====controllerDidChangeContent==");
-    
+   
     [_tableV reloadData];
 }
 
@@ -271,7 +279,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-   
+     NSLog(@"===1===================3====%d",[[[self fetchedResultsController] sections] count]);
     if([self fetchedResultsController]==nil){
         return 0;
     }
@@ -282,6 +290,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
 {
+    
+      NSLog(@"===1===================4");
     
     if (tableView == _searchDisplayC.searchResultsTableView)
     {
@@ -329,13 +339,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+      NSLog(@"===1===================5");
+    
     NSString *reuseIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
-      //NSLog(@"====4==%@",[self fetchedResultsController]);
+    NSLog(@"====4======2222==%@",[self fetchedResultsController]);
     
     if([self fetchedResultsController]!=nil){
         XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];

@@ -56,6 +56,8 @@
 
 //发送消息
 - (void)sendMessage:(NSString *) newmessage toUser:(NSString *) user ;
+/** 发送二进制文件 */
+- (void)sendMessageWithData:(NSData *)data andMessageType:msgType toUser:(NSString *) touser;
 
 + (XMPPHelper *)sharedInstance;
 

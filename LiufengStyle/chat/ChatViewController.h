@@ -10,14 +10,14 @@
 #import "SOMessagingViewController.h"
 #import "XMPPHelper.h"
 
-@interface ChatViewController : SOMessagingViewController
+@interface ChatViewController : SOMessagingViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 
 @property (strong, nonatomic) NSMutableArray *dataSource;
 
 @property (strong, nonatomic) UIImage *myImage;
 @property (strong, nonatomic) UIImage *partnerImage;
-
+@property (strong, nonatomic) UIImagePickerController *imagePicker;
 
 - (void)buildConversation:(NSString *)newFromUser andToUser:(NSString *)newToUser;
 

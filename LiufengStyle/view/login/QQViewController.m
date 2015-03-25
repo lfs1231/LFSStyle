@@ -213,7 +213,7 @@
    // NSDictionary *account=[NSDictionary dictionaryWithObjectsAndKeys:_userNumber.text,@"userNumber",_userPassword.text,@"passWord",@"3.jpeg",@"userHead", nil];
    // [_currentAccounts addObject:account];
    // [self reloadAccountBox];
-    
+    NSLog(@"====login=====");
     //创建词典对象，初始化长度为10
     NSMutableDictionary *userDictionary = [NSMutableDictionary dictionaryWithCapacity:10];
     
